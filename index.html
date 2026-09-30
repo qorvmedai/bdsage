@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#050505">
+  <meta name="color-scheme" content="dark">
+
+  <!-- SEO -->
+  <title>Level 23 — Sagacious Tehilla</title>
+  <meta name="description" content="A digital birthday experience celebrating Sagacious Tehilla. The story, the work, the people, the journey — Level 23.">
+  <link rel="canonical" href="https://birthday.sagacioustehilla.com">
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Level 23 — Sagacious Tehilla">
+  <meta property="og:description" content="The story, the work, the people, the journey. Level 23 is live.">
+  <meta property="og:url" content="https://birthday.sagacioustehilla.com">
+  <meta property="og:image" content="assets/images/og-card.png">
+  <meta property="og:site_name" content="SAGACIOUS / 23">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Level 23 — Sagacious Tehilla">
+  <meta name="twitter:description" content="The story, the work, the people, the journey. Level 23 is live.">
+  <meta name="twitter:image" content="assets/images/og-card.png">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;600&family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/responsive.css">
+</head>
+<body>
+
+  <!-- ========== BACKGROUND AUDIO (BD23 SAGA) ========== -->
+  <audio id="bd23-audio" src="BD23SAGA.mp3" loop preload="auto"></audio>
+
+  <!-- ========== LOADER ========== -->
+  <div id="loader" class="loader" aria-hidden="true">
+    <span class="loader__text">S T · 23</span>
+    <div class="loader__bar"><div id="loader-fill" class="loader__fill"></div></div>
+  </div>
+
+  <!-- ========== CINEMATIC OPENING ========== -->
+  <div id="opening" class="opening" role="dialog" aria-label="Welcome screen">
+    <div class="opening__glow" id="opening-glow"></div>
+    <p class="opening__date" id="op-date">09.30.26</p>
+    <p class="opening__subtitle" id="op-subtitle">A STORY IN PROGRESS.</p>
+    <div class="opening__number" id="op-number">23</div>
+    <h1 class="opening__name" id="op-name">SAGACIOUS TEHILLA</h1>
+    <p class="opening__level" id="op-level">LEVEL 23 UNLOCKED</p>
+    <button class="opening__cta" id="enter-btn" aria-label="Enter the experience">ENTER EXPERIENCE →</button>
+    <p class="opening__hint text-mono" id="op-hint" style="margin-top:1.5rem;opacity:0;">🔊 BD23 Saga Playing · Sound On</p>
+  </div>
+
+  <!-- ========== AMBIENT BACKGROUND ========== -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="ambient-bg__orb ambient-bg__orb--crimson"></div>
+    <div class="ambient-bg__orb ambient-bg__orb--red"></div>
+    <div class="ambient-bg__orb ambient-bg__orb--gold"></div>
+  </div>
+
+  <!-- ========== CUSTOM CURSOR (desktop) ========== -->
+  <div class="cursor" id="custom-cursor" aria-hidden="true">
+    <div class="cursor__dot"></div>
+    <div class="cursor__ring"></div>
+    <span class="cursor__label" id="cursor-label"></span>
+  </div>
+
+  <!-- ========== SCROLL PROGRESS ========== -->
+  <div class="scroll-progress" aria-hidden="true">
+    <div class="scroll-progress__fill" id="scroll-progress-fill"></div>
+  </div>
+
+  <!-- ========== NAVIGATION ========== -->
+  <nav class="nav nav--hidden" id="main-nav" aria-label="Main navigation">
+    <a href="#hero" class="nav__logo">SAGE<span> / </span>23</a>
+    <ul class="nav__links">
+      <li><a href="#story-intro" class="nav__link nav-link" data-section="story">STORY</a></li>
+      <li><a href="#books" class="nav__link nav-link" data-section="books">BOOKS</a></li>
+      <li><a href="#people" class="nav__link nav-link" data-section="people">PEOPLE</a></li>
+      <li><a href="#gallery" class="nav__link nav-link" data-section="gallery">GALLERY</a></li>
+      <li><a href="#quiz" class="nav__link nav-link" data-section="quiz">QUIZ</a></li>
+      <li><a href="#wishes" class="nav__link nav-link" data-section="wishes">WISHES</a></li>
+      <li><a href="#gifts" class="nav__link nav-link" data-section="gifts">GIFT</a></li>
+    </ul>
+    <button class="nav__toggle" id="nav-toggle" aria-label="Open menu" aria-expanded="false">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
+  </nav>
+
+  <!-- ========== MOBILE MENU ========== -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <button class="mobile-menu__close" id="mobile-menu-close" aria-label="Close menu">✕</button>
+    <a href="#hero" class="mobile-menu__link nav-link">HOME</a>
+    <a href="#story-intro" class="mobile-menu__link nav-link">STORY</a>
+    <a href="#books" class="mobile-menu__link nav-link">BOOKS</a>
+    <a href="#people" class="mobile-menu__link nav-link">PEOPLE</a>
+    <a href="#gallery" class="mobile-menu__link nav-link">GALLERY</a>
+    <a href="#quiz" class="mobile-menu__link nav-link">QUIZ</a>
+    <a href="#wishes" class="mobile-menu__link nav-link">WISHES</a>
+    <a href="#gifts" class="mobile-menu__link nav-link">GIFT</a>
+  </div>
+
+  <!-- ========== CHAPTER PROGRESS (desktop) ========== -->
+  <div class="chapter-progress" id="chapter-progress" aria-label="Story progress">
+    <div class="chapter-progress__dot active" data-chapter="1" data-label="Before the Name"></div>
+    <div class="chapter-progress__line"></div>
+    <div class="chapter-progress__dot" data-chapter="2" data-label="Scared to Speak"></div>
+    <div class="chapter-progress__line"></div>
+    <div class="chapter-progress__dot" data-chapter="3" data-label="200 Books"></div>
+    <div class="chapter-progress__line"></div>
+    <div class="chapter-progress__dot" data-chapter="4" data-label="First Client"></div>
+    <div class="chapter-progress__line"></div>
+    <div class="chapter-progress__dot" data-chapter="5" data-label="₦200"></div>
+    <div class="chapter-progress__line"></div>
+    <div class="chapter-progress__dot" data-chapter="6" data-label="Selling is Helping"></div>
+    <div class="chapter-progress__line"></div>
+    <div class="chapter-progress__dot" data-chapter="7" data-label="The Books"></div>
+    <div class="chapter-progress__line"></div>
+    <div class="chapter-progress__dot" data-chapter="8" data-label="The Movement"></div>
+    <div class="chapter-progress__line"></div>
+    <div class="chapter-progress__dot" data-chapter="9" data-label="The Mystics"></div>
+    <div class="chapter-progress__line"></div>
+    <div class="chapter-progress__dot" data-chapter="10" data-label="The People"></div>
+    <div class="chapter-progress__line"></div>
+    <div class="chapter-progress__dot" data-chapter="11" data-label="The Man"></div>
+    <div class="chapter-progress__line"></div>
+    <div class="chapter-progress__dot" data-chapter="12" data-label="The Builder"></div>
+  </div>
+
+  <main>
+    <!-- ========== HERO ========== -->
+    <section id="hero" class="hero section--full">
+      <div class="hero__content container">
+        <div class="hero__text">
+          <p class="hero__label text-mono">SEPTEMBER 30, 2026 · LEVEL 23</p>
+          <h2 class="hero__title text-display">A STORY ABOUT<br><span class="hero__name">BECOMING.</span></h2>
+          <p class="hero__tagline text-hand">"The boy who studied people eventually became someone people studied."</p>
+          <p class="hero__meta text-caption">Marketing Strategist · Businessman · Mentor · Builder</p>
+          <a href="#story-intro" class="hero__cta btn btn--secondary" data-cursor="EXPLORE">BEGIN THE JOURNEY</a>
+        </div>
+        <div class="hero__portrait" data-cursor="VIEW">
+          <img src="assets/images/gallery/sage-blue-portrait.jpg" alt="Sagacious Tehilla" loading="eager">
+          <div class="hero__age">23</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== STORY INTRO ========== -->
+    <section id="story-intro" class="story-intro section--full">
+      <div class="story-intro__line">EVERYONE KNOWS</div>
+      <div class="story-intro__line">A VERSION OF SAGACIOUS.</div>
+      <p class="story-intro__sub">But nobody sees the entire story the same way.</p>
+      <p class="story-intro__sub" style="margin-top:0.5rem;">Let's go back.</p>
+      <button class="story-intro__cta btn btn--primary" id="start-story-btn" style="margin-top:2rem;">START THE STORY</button>
+    </section>
+
+    <!-- ========== CHAPTER 01: BEFORE THE NAME ========== -->
+    <section id="ch-1" class="chapter" data-chapter="1">
+      <div class="container">
+        <span class="chapter__number" aria-hidden="true">01</span>
+        <div class="chapter__header">
+          <p class="chapter__year text-mono">CHAPTER 01</p>
+          <h2 class="chapter__title text-section-title">BEFORE THE NAME</h2>
+          <p class="chapter__subtitle text-hand">The person before the brand.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,4vw,4rem);align-items:center;" class="chapter-grid">
+          <div class="chapter__content text-body">
+            <p>Before Sagacious Tehilla, before TAS, before the books and the speaking and the Mystics — there was just a boy. Curious. Quiet in ways that surprised people. Loud in ways that surprised him.</p>
+            <p style="margin-top:1.25rem;">He describes himself as socially awkward, weird, irritating, bored, talk active. He doesn't live like the stereotypical marketer. He doesn't care much about movies, football, or music.</p>
+            <p style="margin-top:1.25rem;">He reads. He talks. He collaborates. He loves intelligent arguments. He studies people. He loves God. He believes in prayer. He hates tribalism.</p>
+            <p style="margin-top:1.25rem;">This is who he was before the world gave him a title.</p>
+          </div>
+          <div class="chapter__images">
+            <div class="chapter__image" data-cursor="VIEW">
+              <img src="assets/images/childhood/school-uniform.jpg" alt="Young Sagacious — School days" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:1.5rem;margin-top:2.5rem;flex-wrap:wrap;">
+          <div class="chapter__image" style="flex:1;min-width:200px;" data-cursor="VIEW">
+            <img src="assets/images/childhood/family-bw.jpg" alt="Early days" loading="lazy">
+          </div>
+          <div class="chapter__image" style="flex:1;min-width:200px;" data-cursor="VIEW">
+            <img src="assets/images/childhood/young-with-ball.jpg" alt="Childhood memories" loading="lazy">
+          </div>
+          <div class="chapter__image" style="flex:1;min-width:200px;" data-cursor="VIEW">
+            <img src="assets/images/childhood/family-color.jpg" alt="Family" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CHAPTER 02: THE BOY WHO WAS SCARED TO SPEAK ========== -->
+    <section id="ch-2" class="chapter" data-chapter="2">
+      <div class="container">
+        <span class="chapter__number" aria-hidden="true">02</span>
+        <div class="chapter__header">
+          <p class="chapter__year text-mono">CHAPTER 02</p>
+          <h2 class="chapter__title text-section-title">THE BOY WHO WAS SCARED TO SPEAK</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,4vw,4rem);align-items:center;" class="chapter-grid">
+          <div class="chapter__content text-body">
+            <p>Public speaking was hell for him.</p>
+            <p style="margin-top:1.25rem;">Then he realized something: if he was called to impact people, he would need to become comfortable speaking <em>to</em> people.</p>
+            <p style="margin-top:1.25rem;">He started studying — how people react, how people think, how people behave. Not from textbooks. From observation. From conversation. From the people around him.</p>
+          </div>
+          <div class="chapter__images">
+            <div class="chapter__image" data-cursor="VIEW">
+              <img src="assets/images/sagacious-casual.jpg" alt="Sagacious speaking & observing" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cinematic: Hall of 500 -->
+      <div class="cinematic" style="margin-top:4rem;">
+        <p class="text-mono text-muted" style="margin-bottom:1rem;">MARCH 2024</p>
+        <div class="cinematic__big text-red">500+</div>
+        <p class="cinematic__text">young people in the hall.</p>
+        <p class="cinematic__text">Most of them looked older than him.</p>
+        <div class="cinematic__pause"></div>
+        <p class="cinematic__text" style="font-style:italic;color:var(--cream);">"He was scared."</p>
+        <div class="cinematic__pause" style="height:12vh;"></div>
+        <p class="cinematic__text" style="color:var(--cream);">"He walked to the podium anyway."</p>
+        <div class="cinematic__pause" style="height:12vh;"></div>
+        <blockquote class="chapter__quote" style="max-width:550px;margin:0 auto;border-left-color:var(--red);">
+          <p style="font-size:clamp(1.3rem,3vw,2rem);color:var(--cream);font-weight:600;">"Give me the first minute..."</p>
+        </blockquote>
+        <div class="cinematic__pause" style="height:15vh;"></div>
+        <p class="text-display" style="font-size:clamp(1.5rem,4vw,3rem);color:var(--cream);letter-spacing:0.1em;">THE ROOM WENT QUIET.</p>
+      </div>
+    </section>
+
+    <!-- ========== CHAPTER 03: THE YEARS THAT CHANGED HIS MIND ========== -->
+    <section id="ch-3" class="chapter" data-chapter="3">
+      <div class="container">
+        <span class="chapter__number" aria-hidden="true">03</span>
+        <div class="chapter__header">
+          <p class="chapter__year text-mono">CHAPTER 03 · 2021</p>
+          <h2 class="chapter__title text-section-title">THE YEARS THAT CHANGED HIS MIND</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,4vw,4rem);align-items:center;" class="chapter-grid">
+          <div class="chapter__content text-body">
+            <p>He did not believe in God.</p>
+            <p style="margin-top:1.25rem;">He became obsessed with learning. He read science, history, psychology, persuasion, motivation.</p>
+            <p style="margin-top:1.25rem;">He spent endless nights reading in the dark, absorbing wisdom that would shape his entire career.</p>
+          </div>
+          <div class="chapter__images">
+            <div class="chapter__image" data-cursor="VIEW">
+              <img src="assets/images/gallery/sage-portrait-4.jpg" alt="Sagacious Tehilla — Deep study" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <div class="cinematic" style="margin-top:4rem;min-height:auto;padding:4rem 0;">
+          <div class="cinematic__big text-gold" style="font-size:clamp(4rem,10vw,8rem);">200+</div>
+          <p class="text-caption" style="margin-top:0.5rem;">BOOKS IN ONE YEAR</p>
+          <div class="cinematic__big text-red" style="font-size:clamp(2rem,6vw,4rem);margin-top:1.5rem;">SIX BOOKS IN SEVEN DAYS.</div>
+        </div>
+
+        <div class="chapter__content text-body" style="margin-top:2.5rem;max-width:720px;margin-left:auto;margin-right:auto;">
+          <p>Then life introduced a different kind of education.</p>
+          <p style="margin-top:1.25rem;">He experienced betrayal involving a close friend, a girlfriend, family members. His own writing identifies 2022 as the last major betrayal.</p>
+          <blockquote class="chapter__quote" style="margin:2rem 0;">
+            <p>"He had spent years reading about people. Then life gave him a reason to understand them."</p>
+          </blockquote>
+          <p>Psychology stopped being purely intellectual. It became personal.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CHAPTER 04: THE FIRST ATTEMPT ========== -->
+    <section id="ch-4" class="chapter" data-chapter="4">
+      <div class="container">
+        <span class="chapter__number" aria-hidden="true">04</span>
+        <div class="chapter__header">
+          <p class="chapter__year text-mono">CHAPTER 04 · 2023</p>
+          <h2 class="chapter__title text-section-title">THE FIRST ATTEMPT</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,4vw,4rem);align-items:center;" class="chapter-grid">
+          <div class="chapter__content text-body">
+            <p>His original goal: learn how to use words to persuade people.</p>
+            <p style="margin-top:1.25rem;">Then money distracted him.</p>
+            <p style="margin-top:1.25rem;">He chased money. He rushed into DMs. He failed. He became disappointed.</p>
+            <p style="margin-top:1.25rem;">Then he returned to the original goal:</p>
+            <blockquote class="chapter__quote" style="margin-top:1.5rem;">
+              <p style="color:var(--gold);">"I am the psychology oriented copywriter."</p>
+            </blockquote>
+            <p style="margin-top:1.25rem;">One week later: <strong style="color:var(--red);font-size:1.1rem;">FIRST CLIENT.</strong></p>
+          </div>
+          <div class="chapter__images">
+            <div class="chapter__image" data-cursor="VIEW">
+              <img src="assets/images/gallery/sage-portrait-5.jpg" alt="Sagacious Tehilla — The Copywriter" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <div class="quote-moment" style="padding:3rem 0;margin-top:2rem;">
+          <p class="quote-moment__text" style="color:var(--cream);">UNDERSTAND HUMANS.<br>WRITE THINGS PEOPLE CANNOT IGNORE.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CHAPTER 05: ₦200 ========== -->
+    <section id="ch-5" class="chapter" data-chapter="5">
+      <div class="cinematic section--full">
+        <p class="text-mono text-muted" style="margin-bottom:2rem;">CHAPTER 05</p>
+        <div class="cinematic__big" style="font-size:clamp(6rem,22vw,16rem);background:linear-gradient(135deg,var(--red),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">₦200</div>
+        <div class="cinematic__pause" style="height:12vh;"></div>
+        <p class="cinematic__text" style="font-size:1.2rem;">"Five hours of work."</p>
+        <p class="cinematic__text">"That was what he was paid."</p>
+        <div class="cinematic__pause" style="height:10vh;"></div>
+        <p class="cinematic__text">Hungry. No water. No mobile data.</p>
+        <div class="cinematic__pause" style="height:10vh;"></div>
+        <p class="cinematic__text" style="color:var(--cream);">"He could spend it."</p>
+        <div class="cinematic__pause" style="height:8vh;"></div>
+        <p class="cinematic__text" style="color:var(--red);font-weight:600;">"Or multiply it."</p>
+        <div class="cinematic__pause" style="height:10vh;"></div>
+      </div>
+      <div class="container" style="padding-top:2rem;padding-bottom:4rem;">
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,4vw,4rem);align-items:center;" class="chapter-grid">
+          <div class="chapter__content text-body">
+            <p><span class="text-gold" style="font-weight:700;font-size:1.2rem;">DATA → FACEBOOK → 20 BUSINESS OWNERS</span></p>
+            <p style="margin-top:1.25rem;">He offered free ad copy. More than 20 showed up. He researched their businesses. He wrote the ads.</p>
+            <p style="margin-top:1.25rem;">Then something happened.</p>
+            <p style="margin-top:1.25rem;">One person sent him ₦2,000. Another sent him data.</p>
+            <p style="margin-top:1.25rem;font-weight:600;color:var(--cream);font-size:1.1rem;">BRAIN SEDUCTION</p>
+            <p style="margin-top:0.25rem;">30 DAYS. 250+ COPIES.</p>
+          </div>
+          <div class="chapter__images">
+            <div class="chapter__image" data-cursor="VIEW">
+              <img src="assets/images/gallery/sage-portrait-6.jpg" alt="Sagacious Tehilla — Breakthrough" loading="lazy">
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CHAPTER 06: SELLING IS HELPING ========== -->
+    <section id="ch-6" class="chapter" data-chapter="6">
+      <div class="container">
+        <span class="chapter__number" aria-hidden="true">06</span>
+        <div class="chapter__header">
+          <p class="chapter__year text-mono">CHAPTER 06</p>
+          <h2 class="chapter__title text-section-title">SELLING IS HELPING</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,4vw,4rem);align-items:center;" class="chapter-grid">
+          <div class="chapter__content text-body">
+            <p>Selling felt wrong. For a long time, it felt like manipulation. It felt like taking.</p>
+            <p style="margin-top:1.25rem;">Then the mindset shifted:</p>
+            <p style="margin-top:1.25rem;">When you believe in what you're offering, selling becomes service. That realization changed everything about how he approached his work, his clients, and his students.</p>
+          </div>
+          <div class="chapter__images">
+            <div class="chapter__image" data-cursor="VIEW">
+              <img src="assets/images/gallery/sage-portrait-7.jpg" alt="Sagacious Tehilla — Selling is Helping" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <div class="quote-moment" style="padding:4rem 0;margin-top:2rem;">
+          <p class="quote-moment__text" style="background:linear-gradient(135deg,var(--red),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;">SELLING IS HELPING.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CHAPTER 07: THE BOOK ARCHIVE ========== -->
+    <section id="books" class="chapter section" data-chapter="7">
+      <div class="container">
+        <span class="chapter__number" aria-hidden="true">07</span>
+        <div class="chapter__header" style="text-align:center;">
+          <p class="chapter__year text-mono">CHAPTER 07</p>
+          <h2 class="chapter__title text-section-title">THE BOOK ARCHIVE</h2>
+          <p class="chapter__subtitle text-hand">Words he put into the world.</p>
+        </div>
+        <div class="books__grid" id="books-grid">
+          <div class="book-card" data-cursor="VIEW">
+            <div class="book-card__cover"><span class="text-display" style="font-size:1.5rem;color:var(--red);">BS</span></div>
+            <p class="book-card__title">Brain Seduction</p>
+            <p class="text-caption" style="margin-top:0.25rem;">30 days. 250+ copies.</p>
+          </div>
+          <div class="book-card" data-cursor="VIEW">
+            <div class="book-card__cover"><span class="text-display" style="font-size:1.2rem;color:var(--gold);">48</span></div>
+            <p class="book-card__title">48 Laws of Verbal War</p>
+          </div>
+          <div class="book-card" data-cursor="VIEW">
+            <div class="book-card__cover"><span class="text-display" style="font-size:1.2rem;color:var(--cream-dim);">EV</span></div>
+            <p class="book-card__title">Expert Visibility</p>
+          </div>
+          <div class="book-card" data-cursor="VIEW">
+            <div class="book-card__cover"><span class="text-display" style="font-size:1.2rem;color:var(--red);">GM</span></div>
+            <p class="book-card__title">Gossip Marketing</p>
+          </div>
+          <div class="book-card" data-cursor="VIEW">
+            <div class="book-card__cover"><span class="text-display" style="font-size:1rem;color:var(--gold);">SSS</span></div>
+            <p class="book-card__title">Subconscious Selling Strategy</p>
+          </div>
+          <div class="book-card" data-cursor="VIEW">
+            <div class="book-card__cover"><span class="text-display" style="font-size:0.9rem;color:var(--cream-dim);">S&amp;M</span></div>
+            <p class="book-card__title">Sales and Marketing My Paddy</p>
+          </div>
+          <div class="book-card" data-cursor="VIEW">
+            <div class="book-card__cover"><span class="text-display" style="font-size:1.2rem;color:var(--red);">30s</span></div>
+            <p class="book-card__title">30 Seconds Dating</p>
+          </div>
+          <div class="book-card" data-cursor="VIEW">
+            <div class="book-card__cover"><span class="text-display" style="font-size:0.9rem;color:var(--gold);">IMP</span></div>
+            <p class="book-card__title">Inbox Marketing Playbook</p>
+          </div>
+          <div class="book-card" data-cursor="VIEW">
+            <div class="book-card__cover"><span class="text-display" style="font-size:0.9rem;color:var(--cream);">AV</span></div>
+            <p class="book-card__title">AttentionVertising</p>
+          </div>
+          <div class="book-card" data-cursor="VIEW">
+            <div class="book-card__cover"><span class="text-display" style="font-size:0.8rem;color:var(--red);">SBP</span></div>
+            <p class="book-card__title">Subtle Buyer Psychology</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CHAPTER 08: FROM ONE PERSON TO A MOVEMENT ========== -->
+    <section id="ch-8" class="chapter" data-chapter="8">
+      <div class="container" style="text-align:center;">
+        <span class="chapter__number" aria-hidden="true">08</span>
+        <div class="chapter__header" style="text-align:center;">
+          <p class="chapter__year text-mono">CHAPTER 08</p>
+          <h2 class="chapter__title text-section-title">THE WORK STARTED MOVING.</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,4vw,4rem);align-items:center;margin-bottom:3rem;" class="chapter-grid">
+          <div class="chapter__content text-body" style="text-align:left;">
+            <p>What started as a ₦200 data investment evolved into thousands of lives transformed.</p>
+            <p style="margin-top:1.25rem;">Through Tehilla Amplify Solutions (TAS), Sagacious built systems, campaigns, and strategies that scaled businesses into seven figures.</p>
+          </div>
+          <div class="chapter__images">
+            <div class="chapter__image" data-cursor="VIEW">
+              <img src="assets/images/sagacious-office.jpeg" alt="Sagacious Tehilla — Office" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:clamp(1.5rem,3vw,3rem);margin:2.5rem 0;">
+          <div class="glass" style="padding:2rem;min-width:180px;flex:1;max-width:250px;">
+            <div class="cinematic__big text-red" style="font-size:clamp(2rem,5vw,3.5rem);" data-count="500">0</div>
+            <p class="text-caption" style="margin-top:0.5rem;">COPIES SOLD (FIRST BOOK)</p>
+          </div>
+          <div class="glass" style="padding:2rem;min-width:180px;flex:1;max-width:250px;">
+            <div class="cinematic__big text-gold" style="font-size:clamp(2rem,5vw,3.5rem);" data-count="6000">0</div>
+            <p class="text-caption" style="margin-top:0.5rem;">DIGITAL PRODUCTS SOLD IN 12 MONTHS</p>
+          </div>
+          <div class="glass" style="padding:2rem;min-width:180px;flex:1;max-width:250px;">
+            <div class="cinematic__big" style="font-size:clamp(2rem,5vw,3.5rem);color:var(--cream);" data-count="1000">0</div>
+            <p class="text-caption" style="margin-top:0.5rem;">PEOPLE INFLUENCED</p>
+          </div>
+          <div class="glass" style="padding:2rem;min-width:180px;flex:1;max-width:250px;">
+            <div class="cinematic__big text-red" style="font-size:clamp(2rem,5vw,3.5rem);" data-count="1000">0</div>
+            <p class="text-caption" style="margin-top:0.5rem;">TESTIMONIES</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CHAPTER 09: THE MYSTICS ========== -->
+    <section id="ch-9" class="chapter" data-chapter="9">
+      <div class="container" style="text-align:center;">
+        <span class="chapter__number" aria-hidden="true">09</span>
+        <div class="chapter__header" style="text-align:center;">
+          <p class="chapter__year text-mono">CHAPTER 09</p>
+          <h2 class="chapter__title text-section-title">THE MYSTICS</h2>
+          <p class="chapter__subtitle text-hand">Mystery Mastery Community</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,4vw,4rem);align-items:center;" class="chapter-grid">
+          <div class="chapter__content text-body" style="text-align:left;">
+            <p>MMC — the Mystery Mastery Community. The members call themselves <strong class="text-red" data-easter="eriga" style="cursor:pointer;">Mystics</strong>. The community expression: <strong class="text-gold" data-easter="eriga">Eriga</strong>.</p>
+            <p style="margin-top:1.25rem;">It started as a space for learning. It became a movement of young people committed to growth, business, and becoming better versions of themselves.</p>
+          </div>
+          <div class="chapter__images">
+            <div class="chapter__image" data-cursor="VIEW">
+              <img src="assets/images/gallery/sage-portrait-8.jpg" alt="Sagacious Tehilla — MMC Leader" loading="lazy">
+            </div>
+          </div>
+        </div>
+        <!-- Impact Network Canvas -->
+        <div class="network" id="impact-network" style="min-height:350px;margin-top:3rem;">
+          <canvas id="network-canvas" class="network__canvas"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CHAPTER 10: THE PEOPLE ========== -->
+    <section id="people" class="chapter section" data-chapter="10">
+      <div class="container">
+        <span class="chapter__number" aria-hidden="true">10</span>
+        <div class="chapter__header" style="text-align:center;">
+          <p class="chapter__year text-mono">CHAPTER 10</p>
+          <h2 class="chapter__title text-section-title">THE PEOPLE ARE PART OF THE STORY.</h2>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,4vw,4rem);align-items:center;margin-bottom:3rem;" class="chapter-grid">
+          <div class="chapter__content text-body">
+            <p class="text-hand text-muted" style="font-size:1.4rem;">One person can build a business. But the people they impact are part of the real story.</p>
+          </div>
+          <div class="chapter__images">
+            <div class="chapter__image" data-cursor="VIEW">
+              <img src="assets/images/sagacious-agbada-1.jpg" alt="Sagacious — Leadership" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <!-- Philosophy Quotes Grid -->
+        <div style="display:flex;flex-direction:column;gap:2rem;margin:2rem 0;">
+          <div class="quote-moment glass" style="padding:2rem;">
+            <p class="quote-moment__text" style="font-size:clamp(1.1rem,2.2vw,1.6rem);">"If you do not have a hungry audience, I can make your current audience hungry."</p>
+            <p class="quote-moment__attr">— Sagacious Tehilla</p>
+          </div>
+          <div class="quote-moment glass" style="padding:2rem;">
+            <p class="quote-moment__text" style="font-size:clamp(1.1rem,2.2vw,1.6rem);">"You are not in the product business, you are in the perception business."</p>
+            <p class="quote-moment__attr">— Sagacious Tehilla</p>
+          </div>
+          <div class="quote-moment glass" style="padding:2rem;">
+            <p class="quote-moment__text" style="font-size:clamp(1.1rem,2.2vw,1.6rem);">"Everyone started with no testimony."</p>
+            <p class="quote-moment__attr">— Sagacious Tehilla</p>
+          </div>
+          <div class="quote-moment glass" style="padding:2rem;">
+            <p class="quote-moment__text" style="font-size:clamp(1.1rem,2.2vw,1.6rem);">"Show up before you are ready. Preparation is good, but action is better."</p>
+            <p class="quote-moment__attr">— Sagacious Tehilla</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CHAPTER 11: THE MAN BEHIND THE MARKETING ========== -->
+    <section id="ch-11" class="chapter" data-chapter="11">
+      <div class="container">
+        <span class="chapter__number" aria-hidden="true">11</span>
+        <div class="chapter__header" style="text-align:center;">
+          <p class="chapter__year text-mono">CHAPTER 11</p>
+          <h2 class="chapter__title text-section-title">THE MAN BEHIND THE MARKETING</h2>
+          <p class="chapter__subtitle text-hand">Because he's more than strategy.</p>
+        </div>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,4vw,4rem);align-items:center;margin-bottom:3rem;" class="chapter-grid">
+          <div class="chapter__content text-body">
+            <p>Beyond the funnels, the copy, the clients, and the masterclasses is a guy who genuinely loves human quirks, good food, and honest conversations.</p>
+          </div>
+          <div class="chapter__images">
+            <div class="chapter__image" data-cursor="VIEW">
+              <img src="assets/images/gallery/sage-portrait-9.jpg" alt="Sagacious Tehilla — Personal side" loading="lazy">
+            </div>
+          </div>
+        </div>
+
+        <div class="personality-grid">
+          <div class="personality-item glass">
+            <div class="personality-item__icon">🗣️</div>
+            <p class="personality-item__text"><strong>TALK ACTIVE.</strong><br>Not talkative. Talk <em>active</em>.</p>
+          </div>
+          <div class="personality-item glass">
+            <div class="personality-item__icon">⚔️</div>
+            <p class="personality-item__text"><strong>LOVES A GOOD ARGUMENT.</strong><br>Especially an intelligent one.</p>
+          </div>
+          <div class="personality-item glass">
+            <div class="personality-item__icon">⚽</div>
+            <p class="personality-item__text"><strong>DOESN'T CARE ABOUT FOOTBALL.</strong></p>
+          </div>
+          <div class="personality-item glass">
+            <div class="personality-item__icon">🎬</div>
+            <p class="personality-item__text"><strong>DOESN'T WATCH MOVIES.</strong></p>
+          </div>
+          <div class="personality-item glass">
+            <div class="personality-item__icon">📚</div>
+            <p class="personality-item__text"><strong>LOVES READING.</strong><br>200+ books in one year.</p>
+          </div>
+          <div class="personality-item glass">
+            <div class="personality-item__icon">🙏</div>
+            <p class="personality-item__text"><strong>LOVES GOD.</strong><br>Faith is part of his identity.</p>
+          </div>
+          <div class="personality-item glass">
+            <div class="personality-item__icon">🌍</div>
+            <p class="personality-item__text"><strong>HATES TRIBALISM.</strong></p>
+          </div>
+          <div class="personality-item glass">
+            <div class="personality-item__icon">🍲</div>
+            <p class="personality-item__text"><strong>LOVES AKPO AND OKORO SOUP.</strong></p>
+          </div>
+          <div class="personality-item glass">
+            <div class="personality-item__icon">🥜</div>
+            <p class="personality-item__text"><strong>LOVES GROUNDNUTS.</strong><br>Granuts are a non-negotiable staple. 🥜</p>
+          </div>
+          <div class="personality-item glass">
+            <div class="personality-item__icon">✏️</div>
+            <p class="personality-item__text"><strong>TYPO ADDICT.</strong><br>He will type fats instead of fast. Every. Time.</p>
+          </div>
+          <div class="personality-item glass">
+            <div class="personality-item__icon">🚫</div>
+            <p class="personality-item__text"><strong>WILL BLOCK YOU.</strong><br>Without hesitation. 😂</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== CHAPTER 12: THE BUILDER (TAS) ========== -->
+    <section id="ch-12" class="chapter section" data-chapter="12">
+      <div class="container" style="text-align:center;">
+        <span class="chapter__number" aria-hidden="true">12</span>
+        <div class="chapter__header" style="text-align:center;">
+          <p class="chapter__year text-mono">CHAPTER 12</p>
+          <h2 class="chapter__title text-section-title">THE WORK CONTINUES.</h2>
+        </div>
+        <div class="tas" style="margin-top:2.5rem;">
+          <div class="tas__logo">
+            <img src="assets/images/tas-logo-square.jpeg" alt="Tehilla Amplify Solutions" loading="lazy">
+          </div>
+          <h3 class="tas__name text-display">TEHILLA AMPLIFY SOLUTIONS</h3>
+          <p class="tas__tagline">Strategy. Marketing. Growth.</p>
+          <div class="social-links" style="margin-top:2rem;">
+            <a href="https://www.instagram.com/tehillaamplifysolutions" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Instagram" data-cursor="OPEN">📸</a>
+            <a href="https://www.facebook.com/share/1HNxK9GtK4/" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="Facebook" data-cursor="OPEN">📘</a>
+            <a href="https://www.tiktok.com/@tehillaamplify" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="TikTok" data-cursor="OPEN">🎵</a>
+            <a href="https://www.linkedin.com/in/tasy-tehilla-amplify-solutions-724598404" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="LinkedIn" data-cursor="OPEN">💼</a>
+            <a href="https://x.com/TehillaAmplify" target="_blank" rel="noopener noreferrer" class="social-link" aria-label="X" data-cursor="OPEN">✖</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== GALLERY ========== -->
+    <section id="gallery" class="section">
+      <div class="container">
+        <div style="text-align:center;margin-bottom:3rem;">
+          <p class="text-mono text-muted">CAPTURED MOMENTS</p>
+          <h2 class="text-section-title">MEMORIES &amp; PORTRAITS</h2>
+        </div>
+      </div>
+      <!-- Horizontal Film Strip -->
+      <div class="gallery__strip" id="gallery-strip">
+        <div class="gallery__item" data-cursor="VIEW"><img src="assets/images/gallery/sage-blue-portrait.jpg" alt="Sagacious Tehilla — Blue Suit Portrait" loading="lazy"></div>
+        <div class="gallery__item" data-cursor="VIEW"><img src="assets/images/gallery/sage-portrait-4.jpg" alt="Sagacious Tehilla — Red Studio 1" loading="lazy"></div>
+        <div class="gallery__item" data-cursor="VIEW"><img src="assets/images/gallery/sage-portrait-5.jpg" alt="Sagacious Tehilla — Red Studio 2" loading="lazy"></div>
+        <div class="gallery__item" data-cursor="VIEW"><img src="assets/images/gallery/sage-portrait-6.jpg" alt="Sagacious Tehilla — Red Studio 3" loading="lazy"></div>
+        <div class="gallery__item" data-cursor="VIEW"><img src="assets/images/gallery/sage-portrait-7.jpg" alt="Sagacious Tehilla — Red Studio 4" loading="lazy"></div>
+        <div class="gallery__item" data-cursor="VIEW"><img src="assets/images/gallery/sage-portrait-8.jpg" alt="Sagacious Tehilla — Red Studio 5" loading="lazy"></div>
+        <div class="gallery__item" data-cursor="VIEW"><img src="assets/images/gallery/sage-portrait-9.jpg" alt="Sagacious Tehilla — Red Studio 6" loading="lazy"></div>
+        <div class="gallery__item" data-cursor="VIEW"><img src="assets/images/gallery/sage-portrait-10.jpg" alt="Sagacious Tehilla — Red Studio 7" loading="lazy"></div>
+        <div class="gallery__item" data-cursor="VIEW"><img src="assets/images/gallery/sage-portrait-11.jpg" alt="Sagacious Tehilla — Red Studio 8" loading="lazy"></div>
+        <div class="gallery__item" data-cursor="VIEW"><img src="assets/images/gallery/sage-studio-1.jpg" alt="Sagacious Studio" loading="lazy"></div>
+        <div class="gallery__item" data-cursor="VIEW"><img src="assets/images/gallery/sage-studio-2.jpg" alt="Sagacious Studio" loading="lazy"></div>
+        <div class="gallery__item" data-cursor="VIEW"><img src="assets/images/sagacious-hero.png" alt="Sagacious Tehilla Cutout" loading="lazy"></div>
+        <div class="gallery__item" data-cursor="VIEW"><img src="assets/images/sagacious-agbada-1.jpg" alt="Sagacious — Traditional Agbada 1" loading="lazy"></div>
+        <div class="gallery__item" data-cursor="VIEW"><img src="assets/images/sagacious-agbada-2.jpg" alt="Sagacious — Traditional Agbada 2" loading="lazy"></div>
+        <div class="gallery__item" data-cursor="VIEW"><img src="assets/images/sagacious-casual.jpg" alt="Sagacious — Casual" loading="lazy"></div>
+        <div class="gallery__item" data-cursor="VIEW"><img src="assets/images/sagacious-office.jpeg" alt="Sagacious — Office Portrait" loading="lazy"></div>
+        <div class="gallery__item" data-cursor="VIEW"><img src="assets/images/sagacious-drawing-1.jpg" alt="Pen Portrait 1" loading="lazy"></div>
+        <div class="gallery__item" data-cursor="VIEW"><img src="assets/images/sagacious-drawing-2.jpg" alt="Pen Portrait 2" loading="lazy"></div>
+        <div class="gallery__item" data-cursor="VIEW"><img src="assets/images/childhood/school-uniform.jpg" alt="School Uniform" loading="lazy"></div>
+        <div class="gallery__item" data-cursor="VIEW"><img src="assets/images/childhood/young-with-ball.jpg" alt="Childhood with ball" loading="lazy"></div>
+        <div class="gallery__item" data-cursor="VIEW"><img src="assets/images/childhood/family-color.jpg" alt="Family photo" loading="lazy"></div>
+      </div>
+
+      <!-- Lightbox -->
+      <div id="lightbox" class="lightbox" aria-hidden="true">
+        <button id="lightbox-close" class="lightbox__close" aria-label="Close">✕</button>
+        <button id="lightbox-prev" class="lightbox__nav lightbox__nav--prev" aria-label="Previous">‹</button>
+        <img id="lightbox-img" src="" alt="Gallery image enlarged">
+        <button id="lightbox-next" class="lightbox__nav lightbox__nav--next" aria-label="Next">›</button>
+        <span id="lightbox-counter" class="lightbox__counter text-mono"></span>
+      </div>
+    </section>
+
+    <!-- ========== QUIZ ========== -->
+    <section id="quiz" class="section">
+      <div class="container" style="text-align:center;">
+        <p class="text-mono text-muted">GAME TIME</p>
+        <h2 class="text-section-title" style="margin-bottom:3rem;">HOW WELL DO YOU KNOW SAGACIOUS?</h2>
+
+        <div id="quiz-container" class="quiz glass">
+          <!-- Start Screen -->
+          <div id="quiz-start">
+            <p class="text-body text-muted" style="margin-bottom:2rem;">Think you know Sagacious? Let's find out.</p>
+            <button id="quiz-start-btn" class="btn btn--primary">START QUIZ</button>
+          </div>
+
+          <!-- Question Screen -->
+          <div id="quiz-question-screen" class="hidden">
+            <div class="quiz__progress">
+              <span id="quiz-progress-text" class="quiz__progress-text">01 / 05</span>
+              <div class="quiz__progress-bar">
+                <div id="quiz-progress-fill" class="quiz__progress-fill"></div>
+              </div>
+            </div>
+            <h3 id="quiz-question" class="quiz__question"></h3>
+            <div id="quiz-options" class="quiz__options"></div>
+          </div>
+
+          <!-- Result Screen -->
+          <div id="quiz-result" class="quiz__result hidden">
+            <div id="quiz-score" class="quiz__score">0/5</div>
+            <p id="quiz-message" class="quiz__message"></p>
+            <button id="quiz-retry-btn" class="btn btn--secondary" style="margin-top:2rem;">TRY AGAIN</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== WISHES ========== -->
+    <section id="wishes" class="section">
+      <div class="container">
+        <div style="text-align:center;margin-bottom:3rem;">
+          <p class="text-mono text-muted">BIRTHDAY WISHES</p>
+          <h2 class="text-section-title">WORDS FROM THE PEOPLE</h2>
+          <p class="text-body text-muted" style="max-width:500px;margin:1rem auto 0;">One person can build a business. But the people they impact are part of the real story.</p>
+        </div>
+
+        <!-- Featured Messages -->
+        <div id="featured-messages"></div>
+
+        <!-- Filter Bar -->
+        <div id="message-filters" class="filter-bar" style="display:flex;flex-wrap:wrap;justify-content:center;gap:0.5rem;margin:2rem 0;">
+          <button class="btn btn--small btn--secondary filter-btn filter-btn--active" data-filter="all">ALL</button>
+          <button class="btn btn--small btn--ghost filter-btn" data-filter="Student">STUDENTS</button>
+          <button class="btn btn--small btn--ghost filter-btn" data-filter="Mentee">MENTEES</button>
+          <button class="btn btn--small btn--ghost filter-btn" data-filter="Friend">FRIENDS</button>
+          <button class="btn btn--small btn--ghost filter-btn" data-filter="Team member">TEAM</button>
+          <button class="btn btn--small btn--ghost filter-btn" data-filter="Client">CLIENTS</button>
+          <button class="btn btn--small btn--ghost filter-btn" data-filter="Community member">COMMUNITY</button>
+          <button class="btn btn--small btn--ghost filter-btn" data-filter="Family">FAMILY</button>
+        </div>
+
+        <!-- Message Wall -->
+        <div id="message-wall" class="message-wall"></div>
+        <div style="text-align:center;margin-top:2rem;">
+          <button id="load-more-btn" class="btn btn--ghost hidden">LOAD MORE</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== ADD YOUR CHAPTER (Message Form) ========== -->
+    <section id="message-form-section" class="section">
+      <div class="container container--narrow" style="text-align:center;">
+        <h2 class="text-section-title">YOUR WORDS BELONG HERE.</h2>
+        <p class="text-body text-muted" style="max-width:500px;margin:1rem auto 2rem;">You know a different version of Sagacious. Tell him yours.</p>
+
+        <form id="message-submit-form" class="glass" style="padding:clamp(1.5rem,4vw,2.5rem);text-align:left;">
+          <div class="form-group">
+            <label for="msg-name" class="form-label">Name *</label>
+            <input type="text" id="msg-name" class="form-input" required placeholder="Your name" autocomplete="name">
+          </div>
+          <div class="form-group">
+            <label for="msg-relationship" class="form-label">How do you know Sagacious? *</label>
+            <select id="msg-relationship" class="form-select" required>
+              <option value="" disabled selected>Select relationship</option>
+              <option value="Student">Student</option>
+              <option value="Mentee">Mentee</option>
+              <option value="Friend">Friend</option>
+              <option value="Team member">Team member</option>
+              <option value="Client">Client</option>
+              <option value="Community member">Community member</option>
+              <option value="Business partner">Business partner</option>
+              <option value="Family">Family</option>
+              <option value="Colleague">Colleague</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="msg-title" class="form-label">Title (Optional)</label>
+            <input type="text" id="msg-title" class="form-input" placeholder='e.g. "From one of your Mystics"'>
+          </div>
+          <div class="form-group">
+            <label for="msg-message" class="form-label">Your Message *</label>
+            <textarea id="msg-message" class="form-textarea" required placeholder="Your birthday message to Sagacious..."></textarea>
+          </div>
+          <div class="form-group">
+            <label for="msg-photo" class="form-label">📷 Add a photo (optional)</label>
+            <input type="file" id="msg-photo" class="form-input" accept="image/jpeg,image/png,image/webp">
+            <span class="form-hint">JPG, PNG or WEBP. Max 5MB.</span>
+          </div>
+          <button type="submit" id="msg-submit-btn" class="btn btn--primary btn--large" style="width:100%;justify-content:center;">ADD YOUR CHAPTER</button>
+        </form>
+
+        <div id="msg-success" class="success-state hidden">
+          <div class="success-state__icon">✨</div>
+          <h3 class="success-state__heading">CHAPTER RECEIVED.</h3>
+          <p class="success-state__text">Your words have been added to the story.</p>
+          <p class="text-caption" style="margin-top:0.75rem;">It will appear after approval.</p>
+          <button class="btn btn--secondary" style="margin-top:1.5rem;" onclick="document.getElementById('msg-success').classList.add('hidden');document.getElementById('message-submit-form').classList.remove('hidden');document.getElementById('message-submit-form').reset();">SEND ANOTHER</button>
+        </div>
+
+        <div id="msg-error" class="error-state hidden">
+          <p>Something went wrong. Please try again.</p>
+          <button class="btn btn--secondary" style="margin-top:1rem;" onclick="document.getElementById('msg-error').classList.add('hidden');document.getElementById('message-submit-form').classList.remove('hidden');">TRY AGAIN</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== GIFT ROOM ========== -->
+    <section id="gifts" class="section">
+      <div class="container" style="text-align:center;">
+        <p class="text-mono text-muted">CELEBRATE</p>
+        <h2 class="text-section-title">THE GIFT ROOM</h2>
+        <p class="text-body text-muted" style="max-width:500px;margin:1rem auto 3rem;">Which gift would you like to present to Sagacious?</p>
+
+        <div class="gifts__grid">
+          <div class="gift-card gift-card--cash glass" id="gift-cash-card" data-cursor="OPEN">
+            <div class="gift-card__icon">💰</div>
+            <h3 class="gift-card__title">SEND A CASH GIFT</h3>
+            <p class="gift-card__text">"He said he doesn't need a long wishlist. Just send cash." 😂</p>
+            <button class="btn btn--primary btn--small" style="margin-top:1.5rem;" id="gift-cash-btn">SEND CASH GIFT →</button>
+          </div>
+          <div class="gift-card gift-card--physical glass" id="gift-physical-card" data-cursor="OPEN">
+            <div class="gift-card__icon">🎁</div>
+            <h3 class="gift-card__title">SEND PHYSICAL GIFT</h3>
+            <p class="gift-card__text">Have something special or personal you'd like to deliver to him?</p>
+            <button class="btn btn--secondary btn--small" style="margin-top:1.5rem;" id="gift-physical-btn">LOG PHYSICAL GIFT →</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cash Gift Modal -->
+      <div id="gift-cash-modal" class="modal" aria-hidden="true">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content glass">
+          <button class="modal__close" aria-label="Close">✕</button>
+          <h3 class="modal__header">Send a Cash Gift</h3>
+          <p class="modal__subheader">Every gift, no matter the size, is deeply appreciated. 🙏</p>
+          <div style="background:rgba(255,255,255,0.03);border:1px solid var(--glass-border);border-radius:var(--radius-md);padding:1.5rem;margin-bottom:1.5rem;">
+            <p class="text-caption" style="margin-bottom:1rem;">OPAY ACCOUNT DETAILS</p>
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.75rem;">
+              <span class="text-muted" style="font-size:0.85rem;">Bank</span>
+              <span style="color:var(--gold);font-weight:600;">Opay</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;margin-bottom:0.75rem;">
+              <span class="text-muted" style="font-size:0.85rem;">Account Number</span>
+              <span id="account-number" style="color:var(--gold);font-weight:600;font-size:1.2rem;letter-spacing:0.05em;">9042447293</span>
+            </div>
+            <div style="display:flex;justify-content:space-between;">
+              <span class="text-muted" style="font-size:0.85rem;">Account Name</span>
+              <span style="color:var(--cream);font-weight:500;">Chidiebube Nicholas Divine</span>
+            </div>
+          </div>
+          <button class="btn btn--secondary" style="width:100%;" id="copy-account-btn">COPY ACCOUNT NUMBER</button>
+        </div>
+      </div>
+
+      <!-- Physical Gift Modal -->
+      <div id="gift-physical-modal" class="modal" aria-hidden="true">
+        <div class="modal__backdrop"></div>
+        <div class="modal__content glass">
+          <button class="modal__close" aria-label="Close">✕</button>
+          <h3 class="modal__header">Send a Physical Gift</h3>
+          <p class="modal__subheader">Let us know what you'd like to give.</p>
+          <form id="gift-form">
+            <div class="form-group">
+              <label for="gift-name" class="form-label">Name *</label>
+              <input type="text" id="gift-name" class="form-input" required placeholder="Your name">
+            </div>
+            <div class="form-group">
+              <label for="gift-contact" class="form-label">Contact *</label>
+              <input type="text" id="gift-contact" class="form-input" required placeholder="Phone or email">
+            </div>
+            <div class="form-group">
+              <label for="gift-description" class="form-label">Description *</label>
+              <textarea id="gift-description" class="form-textarea" required placeholder="What would you like to give?"></textarea>
+            </div>
+            <div class="form-group">
+              <label for="gift-note" class="form-label">Optional Note</label>
+              <textarea id="gift-note" class="form-textarea" placeholder="Anything else..."></textarea>
+            </div>
+            <button type="submit" id="gift-submit-btn" class="btn btn--primary" style="width:100%;justify-content:center;">SUBMIT GIFT</button>
+          </form>
+          <div id="gift-success" class="success-state hidden">
+            <div class="success-state__icon">🎉</div>
+            <h3 class="success-state__heading">RECEIVED.</h3>
+            <p class="success-state__text">Sagacious will have one more reason to smile.</p>
+          </div>
+          <div id="gift-error" class="error-state hidden">
+            <p>Something went wrong. Please try again.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FINALE ========== -->
+    <section id="finale" class="finale section--full">
+      <p class="finale__line text-body">23 YEARS IN.</p>
+      <p class="finale__line text-body">STILL BUILDING.</p>
+      <p class="finale__line text-body">STILL LEARNING.</p>
+      <p class="finale__line text-body">STILL BECOMING.</p>
+      <div class="finale__number" id="final-23" aria-label="23 — click multiple times for a surprise">23</div>
+      <h2 class="finale__greeting text-display">HAPPY BIRTHDAY,<br><span class="finale__name">SAGACIOUS.</span></h2>
+
+      <!-- Personal Message -->
+      <div class="finale__message" id="final-message">
+        <p>Happy Birthday, Sagacious!</p>
+        <p>Honestly, I'm grateful our paths crossed and that I've had the chance to know you, work with you, have conversations with you and just build around different ideas with you.</p>
+        <p>We've talked about business, opportunities, money, ideas, the future and plenty other things 😂 and I genuinely believe there's still a lot ahead of us.</p>
+        <p>For this new chapter, my prayer is that God gives you more wisdom, clarity, strength and favour. That the things you're working on start making more sense and producing the results you want.</p>
+        <p>May you meet the right people, get the right opportunities and find yourself in rooms you never thought you'd be in.</p>
+        <p>And I pray that everything you're building eventually becomes much bigger than what you can currently see.</p>
+        <p>Keep growing. Keep building. Keep becoming.</p>
+        <p>Happy Birthday once again, Boss Sage. More life, more wisdom, more opportunities and, of course, more wins.</p>
+        <p>We've got a lot ahead.</p>
+      </div>
+
+      <p class="text-display" style="font-size:clamp(1.5rem,3vw,2.5rem);margin-top:3rem;opacity:0;" id="finale-closer">THE STORY ISN'T OVER.</p>
+
+      <div class="finale__cta" style="margin-top:2rem;">
+        <button id="replay-btn" class="btn btn--secondary">REPLAY THE EXPERIENCE</button>
+        <a href="#message-form-section" class="btn btn--primary">LEAVE YOUR MESSAGE</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== AUDIO CONTROL ========== -->
+  <div class="audio-control" id="audio-control" role="button" aria-label="Toggle music" tabindex="0">
+    <div class="audio-control__icon" id="audio-icon">
+      <span class="audio-control__bar" style="height:4px;"></span>
+      <span class="audio-control__bar" style="height:8px;"></span>
+      <span class="audio-control__bar" style="height:6px;"></span>
+      <span class="audio-control__bar" style="height:10px;"></span>
+      <span class="audio-control__bar" style="height:5px;"></span>
+    </div>
+    <span class="audio-control__label" id="audio-label">BD23 SAGA ♪</span>
+  </div>
+
+  <!-- ========== CONFETTI CANVAS ========== -->
+  <canvas id="confetti-canvas" style="position:fixed;inset:0;z-index:9500;pointer-events:none;"></canvas>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="section" style="padding:3rem 0;border-top:1px solid var(--glass-border);">
+    <div class="container" style="text-align:center;">
+      <p class="text-caption">Built with ❤️ for Sagacious Tehilla</p>
+      <p class="text-caption" style="margin-top:0.5rem;">© 2026</p>
+    </div>
+  </footer>
+
+  <!-- ========== SCRIPTS ========== -->
+  <!-- GSAP + ScrollTrigger -->
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <!-- Lenis Smooth Scroll -->
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <!-- Supabase -->
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <!-- App Modules -->
+  <script src="js/supabase-config.js"></script>
+  <script src="js/confetti.js"></script>
+  <script src="js/animations.js"></script>
+  <script src="js/gallery.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/quiz.js"></script>
+  <script src="js/messages.js"></script>
+  <script src="js/gifts.js"></script>
+  <script src="js/story.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
