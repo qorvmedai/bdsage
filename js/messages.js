@@ -1,3 +1,8 @@
+/**
+ * Messages & Wishes Module
+ * Sagacious Tehilla — Level 23 Birthday Experience
+ */
+
 function initMessages() {
     const wall = document.getElementById('message-wall');
     const featuredContainer = document.getElementById('featured-messages');
@@ -27,12 +32,15 @@ function initMessages() {
     function renderFeatured() {
         if (!featuredContainer) return;
         const featured = allMessages.filter(m => m.featured);
-        if (featured.length === 0) { featuredContainer.innerHTML = ''; return; }
+        if (featured.length === 0) {
+            featuredContainer.innerHTML = '';
+            return;
+        }
         
         featuredContainer.innerHTML = featured.map(m => `
-            <div class="glass" style="padding:2.5rem;text-align:center;margin-bottom:3rem;">
-                <p style="font-size:clamp(1.2rem,2.5vw,1.6rem);font-style:italic;color:var(--cream-dim);line-height:1.8;">${escapeHtml(m.message)}</p>
-                <p style="margin-top:1.5rem;font-size:0.85rem;color:var(--cream-muted);">— ${escapeHtml(m.name)}${m.relationship ? ', ' + escapeHtml(m.relationship) : ''}</p>
+            <div class="glass" style="padding:clamp(1.5rem, 4vw, 2.5rem);text-align:center;margin-bottom:2rem;border-radius:var(--radius-lg);">
+                <p style="font-size:clamp(1.1rem, 2.5vw, 1.5rem);font-style:italic;color:var(--cream-dim);line-height:1.8;">"${escapeHtml(m.message)}"</p>
+                <p style="margin-top:1.25rem;font-size:0.85rem;color:var(--cream-muted);">— ${escapeHtml(m.name)}${m.relationship ? ', ' + escapeHtml(m.relationship) : ''}</p>
                 ${m.optional_title ? `<p style="font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase;color:var(--gold);margin-top:0.25rem;">${escapeHtml(m.optional_title)}</p>` : ''}
             </div>
         `).join('');
@@ -40,7 +48,7 @@ function initMessages() {
     
     function renderWall() {
         if (!wall) return;
-        let filtered = currentFilter === 'all' ? allMessages.filter(m => !m.featured) : allMessages.filter(m => {
+        let filtered = currentFilter === 'all' ? allMessages : allMessages.filter(m => {
             const rel = (m.relationship || '').toLowerCase();
             return rel.includes(currentFilter.toLowerCase());
         });
@@ -60,16 +68,19 @@ function initMessages() {
             loadMoreBtn.classList.toggle('hidden', displayedCount >= filtered.length);
         }
 
-        // Animate cards in if GSAP available
-        if (window.gsap) {
-            gsap.fromTo(wall.children, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.05 });
+        if (window.gsap && wall.children.length > 0) {
+            gsap.fromTo(wall.children, { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.4, stagger: 0.05 });
         }
     }
     
     // Filter buttons
     filterBtns.forEach(btn => {
         btn.addEventListener('click', () => {
-            filterBtns.forEach(b => { b.classList.remove('filter-btn--active'); b.classList.remove('btn--secondary'); b.classList.add('btn--ghost'); });
+            filterBtns.forEach(b => {
+                b.classList.remove('filter-btn--active');
+                b.classList.remove('btn--secondary');
+                b.classList.add('btn--ghost');
+            });
             btn.classList.add('filter-btn--active');
             btn.classList.add('btn--secondary');
             btn.classList.remove('btn--ghost');
@@ -86,49 +97,65 @@ function initMessages() {
         });
     }
     
-    // Submit form
+    // Submit message form handler
     if (form) {
         form.addEventListener('submit', async (e) => {
             e.preventDefault();
-            if (!submitBtn) return;
             
-            const name = document.getElementById('msg-name')?.value.trim();
-            const relationship = document.getElementById('msg-relationship')?.value;
-            const message = document.getElementById('msg-message')?.value.trim();
-            const title = document.getElementById('msg-title')?.value.trim();
+            const nameEl = document.getElementById('msg-name');
+            const relEl = document.getElementById('msg-relationship');
+            const msgEl = document.getElementById('msg-message');
+            const titleEl = document.getElementById('msg-title');
             const photoInput = document.getElementById('msg-photo');
             
-            if (!name || !relationship || !message) return;
+            const name = nameEl?.value.trim();
+            const relationship = relEl?.value;
+            const message = msgEl?.value.trim();
+            const title = titleEl?.value.trim();
             
-            submitBtn.textContent = 'SENDING...';
-            submitBtn.disabled = true;
+            if (!name || !relationship || !message) {
+                alert('Please complete all required fields.');
+                return;
+            }
+            
+            if (submitBtn) {
+                submitBtn.textContent = 'SENDING YOUR CHAPTER...';
+                submitBtn.disabled = true;
+            }
             
             try {
                 let photoUrl = null;
                 if (photoInput?.files?.length > 0) {
                     const uploadResult = await window.SupabaseAPI.uploadMessagePhoto(photoInput.files[0]);
-                    if (uploadResult.success) photoUrl = uploadResult.url;
+                    if (uploadResult.success && uploadResult.url) photoUrl = uploadResult.url;
                 }
                 
                 const result = await window.SupabaseAPI.submitMessage({
-                    name, relationship, message,
+                    name,
+                    relationship,
+                    message,
                     optional_title: title || null,
                     photo_url: photoUrl
                 });
                 
                 if (result.success) {
                     form.classList.add('hidden');
-                    successEl?.classList.remove('hidden');
-                    errorEl?.classList.add('hidden');
+                    if (successEl) successEl.classList.remove('hidden');
+                    if (errorEl) errorEl.classList.add('hidden');
+                    
+                    // Reload wall to include new message immediately
+                    await loadMessages();
                 } else {
-                    throw new Error(result.error);
+                    throw new Error(result.error || 'Submission failed');
                 }
             } catch (err) {
                 console.error('[Messages] Submit error:', err);
-                errorEl?.classList.remove('hidden');
+                if (errorEl) errorEl.classList.remove('hidden');
             } finally {
-                submitBtn.textContent = 'ADD YOUR CHAPTER';
-                submitBtn.disabled = false;
+                if (submitBtn) {
+                    submitBtn.textContent = 'ADD YOUR CHAPTER';
+                    submitBtn.disabled = false;
+                }
             }
         });
     }
@@ -140,6 +167,6 @@ function initMessages() {
         return div.innerHTML;
     }
     
-    // Initialize
+    // Initial load
     loadMessages();
 }

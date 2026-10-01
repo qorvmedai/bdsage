@@ -192,14 +192,21 @@ function initMobileMenu() {
 
     if (!navToggle || !mobileMenu) return;
 
-    function openMenu() {
+    function openMenu(e) {
+        if (e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        mobileMenu.classList.add('mobile-menu--open');
         mobileMenu.classList.add('mobile-menu--active');
         mobileMenu.setAttribute('aria-hidden', 'false');
         navToggle.setAttribute('aria-expanded', 'true');
         document.body.classList.add('no-scroll');
     }
 
-    function closeMenu() {
+    function closeMenu(e) {
+        if (e) e.stopPropagation();
+        mobileMenu.classList.remove('mobile-menu--open');
         mobileMenu.classList.remove('mobile-menu--active');
         mobileMenu.setAttribute('aria-hidden', 'true');
         navToggle.setAttribute('aria-expanded', 'false');
@@ -207,7 +214,12 @@ function initMobileMenu() {
     }
 
     navToggle.addEventListener('click', openMenu);
-    if (closeBtn) closeBtn.addEventListener('click', closeMenu);
+    navToggle.addEventListener('touchstart', openMenu, { passive: false });
+
+    if (closeBtn) {
+        closeBtn.addEventListener('click', closeMenu);
+        closeBtn.addEventListener('touchstart', closeMenu, { passive: false });
+    }
 
     menuLinks.forEach(link => {
         link.addEventListener('click', () => {
